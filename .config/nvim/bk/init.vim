@@ -31,7 +31,7 @@ set showcmd                  " shows command in the bottom bar
 set laststatus=2
 set noshowmode
 
-set colorcolumn=100
+set colorcolumn=90
 
 
 "" Plugins
@@ -75,6 +75,8 @@ let g:ale_linters = {
       \   'python': ['flake8', 'pylint'],
       \}
 
+let g:ale_python_flake8_options = '--max-line-length=88'
+
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS = '--reverse'
 
@@ -89,12 +91,8 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-nnoremap <leader>tn <cmd>TestNearest<cr>
-nnoremap <leader>tf <cmd>TestFile<cr>
-nnoremap <leader>ta <cmd>TestSuite<cr>
-nnoremap <leader>tl <cmd>TestLast<cr>
 
-""" LPS
+""" LSP
 nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
 
 nnoremap <leader>h <C-W><C-H> 
