@@ -11,14 +11,15 @@ return require('packer').startup(function(use)
   }
 
   use({
-	  'rose-pine/neovim',
-	  as = 'rose-pine',
-	  config = function()
-		  require("rose-pine").setup()
-		  vim.cmd('colorscheme rose-pine')
-	  end
-  })	
+      'rose-pine/neovim',
+      as = 'rose-pine',
+      config = function()
+          require("rose-pine").setup()
+          vim.cmd('colorscheme rose-pine')
+      end
+  })
 
+  use('tpope/vim-commentary')
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('mbbill/undotree')
   use('tpope/vim-fugitive')
