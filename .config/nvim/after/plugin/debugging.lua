@@ -1,5 +1,4 @@
 local dap = require('dap')
-local dap_go = require('dap-go')
 local dapui = require('dapui')
 local dap_virtual_text = require('nvim-dap-virtual-text')
 
@@ -9,7 +8,6 @@ vim.keymap.set('n', '<F2>', dap.step_into, {})
 vim.keymap.set('n', '<F12>', dap.step_out, {})
 vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, {})
 vim.keymap.set('n', '<leader>dr', dap.repl.open, {})
-vim.keymap.set('n', '<leader>dt', dap_go.debug_test, {})
 
 vim.keymap.set('n', '<leader>B', function ()
     dap.set_breakpoint(vim.fn.input('Breakpoint condition: '));
@@ -19,8 +17,39 @@ vim.keymap.set('n', '<leader>lp', function ()
    dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: '));
 end)
 
+dap.adapters.delve = {
+  type = 'server',
+  port = 2345,
+}
+
+dap.configurations.go = {
+  {
+    type = 'delve',
+    request = 'attach',
+    name = 'Attach to Go',
+    mode = 'remote',
+    substitutePath = {
+      {
+        from = "${env:GOPATH}/src",
+        to = "src"
+      },
+      {
+        from = "${env:GOPATH}/bazel-go-code/external/",
+        to = "external/"
+      },
+      {
+        from = "${env:GOPATH}/bazel-out/",
+        to = "bazel-out/"
+      },
+      {
+        from = "${env:GOPATH}/bazel-go-code/external/go_sdk",
+        to = "GOROOT/"
+      },
+    },
+  },
+}
+
 dap_virtual_text.setup()
-dap_go.setup()
 dapui.setup()
 
 dap.listeners.after.event_initialized['dapui_config'] = function()
