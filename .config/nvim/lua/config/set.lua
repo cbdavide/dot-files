@@ -10,13 +10,12 @@ vim.opt.smartindent = true
 vim.opt.smartcase = true
 vim.opt.wrap = false
 
-
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
@@ -33,6 +32,8 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.g.mapleader = " "
 
---Status Line
---vim.opt.laststatus=2
---vim.opt.noshowmode
+vim.env.PATH = vim.env.VIM_PATH or vim.env.PATH
+
+-- Later versions for LanguageeTool break the plugin
+-- https://github.com/rhysd/vim-grammarous/issues/110#issuecomment-1468495923
+vim.g["grammarous#jar_url"] = 'https://www.languagetool.org/download/LanguageTool-5.9.zip'

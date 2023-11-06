@@ -1,4 +1,4 @@
--- Check installation guide at https://github.com/wbthomason/packer.nvim 
+-- Check installation guide at https://github.com/wbthomason/packer.nvim
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
@@ -6,8 +6,8 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
-	  requires = { {'nvim-lua/plenary.nvim'} }
+          'nvim-telescope/telescope.nvim', tag = '0.1.4',
+          requires = { {'nvim-lua/plenary.nvim'} }
   }
 
   use({
@@ -25,26 +25,24 @@ return require('packer').startup(function(use)
   use('tpope/vim-fugitive')
 
   use {
-	  'VonHeikemen/lsp-zero.nvim',
-	  branch = 'v1.x',
-	  requires = {
-		  -- LSP Support
-		  {'neovim/nvim-lspconfig'},             -- Required
-		  {'williamboman/mason.nvim'},           -- Optional
-		  {'williamboman/mason-lspconfig.nvim'}, -- Optional
+          'VonHeikemen/lsp-zero.nvim',
+          branch = 'v3.x',
+          requires = {
+                  -- LSP Support
+                  {'neovim/nvim-lspconfig'},             -- Required
 
-		  -- Autocompletion
-		  {'hrsh7th/nvim-cmp'},         -- Required
-		  {'hrsh7th/cmp-nvim-lsp'},     -- Required
-		  {'hrsh7th/cmp-buffer'},       -- Optional
-		  {'hrsh7th/cmp-path'},         -- Optional
-		  {'saadparwaiz1/cmp_luasnip'}, -- Optional
-		  {'hrsh7th/cmp-nvim-lua'},     -- Optional
+                  -- Autocompletion
+                  {'hrsh7th/nvim-cmp'},         -- Required
+                  {'hrsh7th/cmp-nvim-lsp'},     -- Required
+                  {'hrsh7th/cmp-buffer'},       -- Optional
+                  {'hrsh7th/cmp-path'},         -- Optional
+                  {'saadparwaiz1/cmp_luasnip'}, -- Optional
+                  {'hrsh7th/cmp-nvim-lua'},     -- Optional
 
-		  -- Snippets
-		  {'L3MON4D3/LuaSnip'},             -- Required
-		  {'rafamadriz/friendly-snippets'}, -- Optional
-	  }
+                  -- Snippets
+                  {'L3MON4D3/LuaSnip'},             -- Required
+                  {'rafamadriz/friendly-snippets'}, -- Optional
+          }
   }
 
   use("ThePrimeagen/harpoon")
@@ -53,5 +51,17 @@ return require('packer').startup(function(use)
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
   use 'theHamsta/nvim-dap-virtual-text'
   use 'nvim-telescope/telescope-dap.nvim'
+
+  use {
+      'j-hui/fidget.nvim',
+      tag = 'legacy',
+      config = function()
+        require("fidget").setup {
+          -- options
+        }
+      end,
+  }
+
+  use 'rhysd/vim-grammarous'
 
 end)
