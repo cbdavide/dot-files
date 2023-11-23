@@ -63,5 +63,6 @@ return require('packer').startup(function(use)
   }
 
   use 'rhysd/vim-grammarous'
+  use 'github/copilot.vim'
 
 end)
