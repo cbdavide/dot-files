@@ -6,7 +6,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   use {
-          'nvim-telescope/telescope.nvim', tag = '0.1.4',
+          'nvim-telescope/telescope.nvim', tag = '0.1.x',
           requires = { {'nvim-lua/plenary.nvim'} }
   }
 
@@ -54,7 +54,7 @@ return require('packer').startup(function(use)
 
   use {
       'j-hui/fidget.nvim',
-      tag = 'legacy',
+      tag = 'v1.2.0',
       config = function()
         require("fidget").setup {
           -- options
