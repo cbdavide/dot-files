@@ -1,6 +1,9 @@
 require('rose-pine').setup({
     dark_variant = 'dawn',
-    disable_italics = true,
+    styles = {
+        bold = false,
+        italic = false,
+    },
 })
 
 vim.cmd('colorscheme rose-pine')
