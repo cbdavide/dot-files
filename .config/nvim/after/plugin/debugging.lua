@@ -2,6 +2,7 @@ local dap = require('dap')
 local dapui = require('dapui')
 local dap_virtual_text = require('nvim-dap-virtual-text')
 
+
 vim.keymap.set('n', '<F5>', dap.continue, {})
 vim.keymap.set('n', '<F3>', dap.step_over, {})
 vim.keymap.set('n', '<F2>', dap.step_into, {})
@@ -63,3 +64,4 @@ end
 dap.listeners.before.event_exited['dapui_config'] = function()
   dapui.close()
 end
+
