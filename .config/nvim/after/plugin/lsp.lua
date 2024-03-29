@@ -7,12 +7,36 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 require('lspconfig').gopls.setup({
-    cmd = {'gopls', '-remote=auto'},
-    -- ...
+    capabilities = lsp_capabilities,
+    flags = {
+        -- Don't spam LSP with changes. Wait a second between each.
+        debounce_text_changes = 1000,
+    },
+    cmd = {
+        '/opt/go/path/bin/gopls',
+        '-remote=auto',
+        '-logfile',
+        '/home/user/nvim-gopls.log',
+        '-rpc.trace'
+    },
     init_options = {
+        analyses = {
+            shadow = true,
+            unusedparams = true,
+        },
         gofumpt = true,
         staticcheck = true,
-        memoryMode = "DegradeClosed",
+        semanticTokens = true,
+        vulncheck = 'Off',
+        importShortcut = 'Definition',
+        directoryFilters = {
+            '-**/bazel-out',
+            '-**/bazel-go-code',
+            '-**/bazel-pkgdrv',
+            '-**/bazel-testlogs',
+        },
     },
 })
