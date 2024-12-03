@@ -28,6 +28,8 @@ return require('packer').startup(function(use)
           'VonHeikemen/lsp-zero.nvim',
           branch = 'v3.x',
           requires = {
+                  {'williamboman/mason.nvim'},
+                  {'williamboman/mason-lspconfig.nvim'},
                   -- LSP Support
                   {'neovim/nvim-lspconfig'},             -- Required
 
@@ -50,6 +52,7 @@ return require('packer').startup(function(use)
   use 'mfussenegger/nvim-dap'
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
   use 'theHamsta/nvim-dap-virtual-text'
+  use 'nvim-telescope/telescope-dap.nvim'
 
   use {
       'j-hui/fidget.nvim',
@@ -62,6 +65,5 @@ return require('packer').startup(function(use)
   }
 
   use 'rhysd/vim-grammarous'
-  use 'github/copilot.vim'
 
 end)

@@ -7,36 +7,32 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 require('lspconfig').gopls.setup({
-    capabilities = lsp_capabilities,
-    flags = {
-        -- Don't spam LSP with changes. Wait a second between each.
-        debounce_text_changes = 1000,
-    },
-    cmd = {
-        '/opt/go/path/bin/gopls',
-        '-remote=auto',
-        '-logfile',
-        '/home/user/nvim-gopls.log',
-        '-rpc.trace'
-    },
+    cmd = {'gopls', '-remote=auto'},
+    -- ...
     init_options = {
-        analyses = {
-            shadow = true,
-            unusedparams = true,
-        },
         gofumpt = true,
         staticcheck = true,
-        semanticTokens = true,
-        vulncheck = 'Off',
-        importShortcut = 'Definition',
-        directoryFilters = {
-            '-**/bazel-out',
-            '-**/bazel-go-code',
-            '-**/bazel-pkgdrv',
-            '-**/bazel-testlogs',
-        },
+        memoryMode = "DegradeClosed",
     },
+})
+
+require('lspconfig').hls.setup({
+    cmd = { "haskell-language-server-wrapper", "--lsp" },
+    filetypes = { 'hs', 'haskell', 'lhaskell', 'cabal' },
+    -- ...
+    init_options = {
+    },
+})
+
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  -- Replace the language servers listed here
+  -- with the ones you want to install
+  ensure_installed = {'ts_ls', 'pylsp', 'csharp_ls'},
+  handlers = {
+    function(server_name)
+      require('lspconfig')[server_name].setup({})
+    end,
+  }
 })
