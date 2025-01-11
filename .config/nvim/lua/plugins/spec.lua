@@ -19,7 +19,7 @@ return {
     },
     {
         "VonHeikemen/lsp-zero.nvim",
-        branch = "v3.x",
+        branch = "v4.x",
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
@@ -45,7 +45,12 @@ return {
     },
     {
         "j-hui/fidget.nvim",
-        tag = "v1.2.0",
+        tag = "v1.5.0",
+    },
+    {
+        "mrcjkb/haskell-tools.nvim",
+        version = '^4', -- Recommended
+        lazy = false, -- This plugin is already lazy
     },
     {"mbbill/undotree"},
     {"tpope/vim-fugitive"},
