@@ -1,0 +1,81 @@
+* {
+    font-family: JetbrainsMono, Symbols Nerd Font, Font Awesome;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(43, 48, 59, 0.4);
+    color: white;
+}
+
+tooltip {
+    background: rgba(43, 48, 59, 0.9);
+    border: 1px solid rgba(100, 114, 125, 0.5);
+}
+tooltip label {
+    color: white;
+}
+
+#workspaces button {
+    padding: 0px 5px;
+    background: transparent;
+    color: white;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+    background: rgba(2, 136, 209, 0.5);
+    border-bottom: 3px solid white;
+}
+
+#mode {
+    padding: 0px 5px;
+    background: rgba(2, 136, 209, 0.5);
+    border-bottom: 3px solid white;
+}
+
+
+#backlight,
+#pulseaudio,
+#network,
+#memory,
+#language,
+#battery,
+#power-profiles-daemon,
+#clock,
+#custom-power {
+    margin: 0px 2px;
+    padding: 0px 7px;
+    color: white;
+    background: rgba(2, 136, 209, 0.5);
+    border-radius: 10px;
+}
+
+
+#backlight:hover,
+#network:hover,
+#memory:hover,
+#language:hover,
+#battery:hover,
+#power-profiles-daemon:hover,
+#clock:hover,
+#pulseaudio:hover {
+    background: rgba(0, 180, 255, 0.6);
+}
+
+#battery {
+    color: white;
+}
+
+#battery.charging {
+    color: #a8ff60;
+}
+
+#battery.warning:not(.charging) {
+    color: #f9c74f;
+}
+
+#battery.critical:not(.charging) {
+    color: #f94144;
+}
