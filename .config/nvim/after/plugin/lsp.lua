@@ -51,6 +51,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
     vim.keymap.set({"n", "x"}, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
     vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+    vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>", opts)
+
   end,
 })
 
@@ -64,11 +66,12 @@ require("lspconfig").gopls.setup({
     },
 })
 
+require'lspconfig'.ocamllsp.setup{}
+
 require("mason").setup({})
 require("mason-lspconfig").setup({
-  -- Replace the language servers listed here
-  -- with the ones you want to install
-  ensure_installed = {"ts_ls", "pylsp", "csharp_ls"},
+  automatic_enable = true,
+  ensure_installed = {"ts_ls", "pylsp"},
   handlers = {
     function(server_name)
       require("lspconfig")[server_name].setup({})
@@ -103,6 +106,7 @@ vim.api.nvim_create_autocmd("FileType", {
     -- haskell-language-server relies heavily on codeLenses,
     -- so auto-refresh (see advanced configuration) is enabled by default
     vim.keymap.set("n", "<space>ca", vim.lsp.codelens.run, opts)
+    vim.keymap.set("n", "<space>cr", vim.lsp.codelens.refresh, opts)
     -- Hoogle search for the type signature of the definition under the cursor
     vim.keymap.set("n", "<space>hs", ht.hoogle.hoogle_signature, opts)
     -- Evaluate all code snippets
